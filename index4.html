@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh; /* Set the body to the full height of the viewport */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column; /* Stack items in a column */
+            position: relative;
+        }
+
+        .nested-container {
+            display: flex;
+            flex-direction: row; /* Stack items in a row */
+        }
+
+        .nested-container2 {
+            display: flex;
+            flex-direction: column; /* Stack items in a column */
+            margin-left: auto; /* Push to the right */
+        }
+
+        .textbox {
+            margin: 10px;
+            padding: 10px;
+            /* border: 1px solid #ccc; */
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .textbox::before {
+            content: '';
+            position: absolute;
+            top: -15px; /* Adjust the position of the line vertically */
+            left: 50%; /* Position the line horizontally in the middle */
+            border-left: 2px solid #ccc; /* Line color and style */
+            height: 15px; /* Length of the line */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nested-container">
+            <div class="textbox">
+                <!-- <label for="textbox0">Text Box 0:</label> -->
+                <textarea id="textbox0" name="textbox0" rows="7" cols="30"></textarea>
+            </div>
+        </div>
+
+        <div class="nested-container">
+            <div class="textbox">
+                <!-- <label for="textbox1">Text Box 1:</label> -->
+                <textarea id="textbox1" name="textbox1" rows="7" cols="30"></textarea>
+            </div>
+
+            <div class="textbox">
+                <!-- <label for="textbox2">Text Box 2:</label> -->
+                <textarea id="textbox2" name="textbox2" rows="7" cols="30"></textarea>
+            </div>
+        </div>
+
+        <div class="nested-container2">
+            <div class="textbox">
+                <!-- <label for="textbox3">Text Box 3:</label> -->
+                <textarea id="textbox3" name="textbox3" rows="7" cols="30"></textarea>
+            </div>
+
+            <div class="textbox">
+                <!-- <label for="textbox4">Text Box 4:</label> -->
+                <textarea id="textbox4" name="textbox4" rows="7" cols="30"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       
+    </script>
+</body>
+</html>
