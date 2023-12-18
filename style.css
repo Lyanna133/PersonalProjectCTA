@@ -124,3 +124,44 @@ body {
     box-sizing: inherit;
     background-color: white;
 }
+
+/* Add this style for the hidden button */
+/* Add this style for the hidden button on the right */
+.hidden-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background-color: #3498db; /* Change the color as needed */
+    color: #fff;
+    border: none;
+    border-radius: 0.4rem;
+    font-size: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Add this style for the hidden button on the left */
+.left-btn {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: #3498db; /* Change the color as needed */
+    color: #fff;
+    border: none;
+    border-radius: 0.4rem;
+    font-size: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Show the hidden buttons when hovering over the card */
+.grid__item:hover .hidden-btn,
+.grid__item:hover .left-btn {
+    opacity: 1;
+}
