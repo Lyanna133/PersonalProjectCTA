@@ -58,7 +58,7 @@ body {
   object-fit: cover;
 }
 .card__content {
-  padding: 3rem 3rem;
+  padding: 3rem 4rem;
 }
 .card__header {
   font-size: 3rem;
@@ -85,6 +85,7 @@ body {
   border-radius: 0.4rem;
   transition: 0.2s;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 .card__btn span {
   margin-left: 1rem;
@@ -125,7 +126,8 @@ body {
     background-color: white;
 }
 
-/* Add this style for the hidden button */
+
+
 /* Add this style for the hidden button on the right */
 .hidden-btn {
     position: absolute;
@@ -160,8 +162,41 @@ body {
     transition: opacity 0.3s ease-in-out;
 }
 
+/* Add this style for the hidden button on the bottom */
+.bottom-btn {
+    position: absolute;
+    left: 50%;
+    bottom: -20px; /* Adjust this value to match the height of the button */
+    transform: translateX(-50%);
+    background-color: #3498db; /* Change the color as needed */
+    color: #fff;
+    border: none;
+    border-radius: 0.4rem;
+    font-size: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    width: 40px;
+    height: 40px; /* Set height to auto to prevent stretching vertically */
+    margin-top: 100px;
+}
+
+/* Adjust the parent position to relative */
+.grid__item {
+    position: relative;
+    background-color: #fff;
+    border-radius: 0.4rem;
+    overflow: hidden;
+    box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
 /* Show the hidden buttons when hovering over the card */
 .grid__item:hover .hidden-btn,
-.grid__item:hover .left-btn {
+.grid__item:hover .left-btn,
+.grid__item:hover .bottom-btn {
     opacity: 1;
 }
