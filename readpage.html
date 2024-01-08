@@ -14,7 +14,7 @@
     <button class="editButton" onclick="editTitle()" id="editTitleButton">Edit Title</button>
     <div class="chapter-content" id="chapterContent">
       <!-- Insert the content of the chapter here -->
-      <p id="chapterText"></p>
+      <p id="chapterText"></p> 
     </div>
     <button class="editButton" onclick="editChapter()" id="editButton">Edit Chapter</button>
     <div class="navigation">
@@ -96,14 +96,15 @@
       editButton.textContent = 'Save Changes';
       editButton.onclick = saveChapter;
     }
-
     function saveChapter() {
       const chapterTextarea = document.getElementById('chapterTextarea');
-      const chapterTextElement = document.getElementById('chapterContent');
       const editButton = document.getElementById('editButton');
       
       // Replace newline characters with <br> tags
       const formattedText = chapterTextarea.value.replace(/\n/g, '<br>');
+
+      // Save the edited text to local storage
+      setStoredChapterText(formattedText); // Store the formatted text
 
       // Replace the textarea with a new paragraph containing the edited text
       const newParagraph = document.createElement('p');
@@ -114,15 +115,13 @@
       // Change the button text and functionality back to edit
       editButton.textContent = 'Edit Chapter';
       editButton.onclick = editChapter;
-
-      // Save the edited text to local storage
-      setStoredChapterText(chapterTextarea.value);
     }
 
     // Initialize the page with the stored chapter title and content
     document.addEventListener('DOMContentLoaded', function() {
       const chapterTitleElement = document.getElementById('chapterTitle');
       const chapterTextElement = document.getElementById('chapterText');
+      
       chapterTitleElement.textContent = getStoredChapterTitle();
       chapterTextElement.innerHTML = getStoredChapterText(); // Use innerHTML to render <br> tags as line breaks
     });
