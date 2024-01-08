@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chapter 1</title>
 <link rel="stylesheet" href="style3.css">
-<style>
-    /* Add this style to make the textarea larger */
-    
-</style>
+
 </head>
 <body>
 
@@ -105,10 +102,13 @@
       const chapterTextElement = document.getElementById('chapterContent');
       const editButton = document.getElementById('editButton');
       
+      // Replace newline characters with <br> tags
+      const formattedText = chapterTextarea.value.replace(/\n/g, '<br>');
+
       // Replace the textarea with a new paragraph containing the edited text
       const newParagraph = document.createElement('p');
       newParagraph.id = 'chapterText';
-      newParagraph.textContent = chapterTextarea.value;
+      newParagraph.innerHTML = formattedText; // Use innerHTML to render <br> tags as line breaks
       chapterTextarea.replaceWith(newParagraph);
       
       // Change the button text and functionality back to edit
@@ -124,11 +124,10 @@
       const chapterTitleElement = document.getElementById('chapterTitle');
       const chapterTextElement = document.getElementById('chapterText');
       chapterTitleElement.textContent = getStoredChapterTitle();
-      chapterTextElement.textContent = getStoredChapterText();
+      chapterTextElement.innerHTML = getStoredChapterText(); // Use innerHTML to render <br> tags as line breaks
     });
 </script>
 
-<!-- ... existing code ... -->
 
 </body>
 </html>

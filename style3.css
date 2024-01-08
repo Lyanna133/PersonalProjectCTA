@@ -23,11 +23,13 @@ body {
 
   textarea {
     margin-top: 15px;
-    width: 100%; /* Adjust as needed */
-    height: 500px; /* Adjust the height as needed */
+    width: 100%;       /* Adjust as needed */
+    height: 500px;     /* Adjust the height as needed */
     padding: 10px;
     box-sizing: border-box;
+    white-space: pre-wrap; /* Preserve whitespace and newlines */
 }
+
   .navigation {
     margin-top: 2rem;
     display: flex;
