@@ -1,0 +1,46 @@
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 3rem;
+    background-color: #f5f5f5;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .chapter-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  .chapter-content {
+    font-size: 1.2rem;
+    text-align: justify;
+  }
+  .navigation {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .navigation a {
+    padding: 0.5rem 1rem;
+    background-color: #e6ecff;
+    color: #0d0d0d;
+    text-decoration: none;
+    border-radius: 0.3rem;
+    transition: background-color 0.2s;
+  }
+  .navigation a:hover {
+    background-color: #e6ecff;
+  }
+.editButton {
+    padding: 0.5rem 1rem;
+  background-color: #e6ecff;
+  color: #0d0d0d;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  transition: background-color 0.2s;
+  }
