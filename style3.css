@@ -20,6 +20,14 @@ body {
     font-size: 1.2rem;
     text-align: justify;
   }
+
+  textarea {
+    margin-top: 15px;
+    width: 100%; /* Adjust as needed */
+    height: 500px; /* Adjust the height as needed */
+    padding: 10px;
+    box-sizing: border-box;
+}
   .navigation {
     margin-top: 2rem;
     display: flex;
