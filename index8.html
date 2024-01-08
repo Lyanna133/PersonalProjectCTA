@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-GB">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CSS Grid Cards</title>
+    <link rel="stylesheet" href="style2.css">
+    <!-- <script src="script.js"></script> -->
+  </head>
+
+<body>
+<div class="grid" id="cardContainer">
+    
+    <!-- Cards will be dynamically generated here -->
+  </div>
+
+</body>
+
+  <script>
+// Function to add a new card
+function addNewCard(position, chapterNumber) {
+  // Create a new card element
+  const newCard = document.createElement('div');
+  newCard.className = 'grid__item';
+  
+  // Set the content of the new card
+  newCard.innerHTML = `
+    <div class="cardtest">
+      <div class="card__content">
+        <h1 class="card__header">Chapter ${chapterNumber}</h1>
+        <p class="card__text">This is the content of Chapter ${chapterNumber}...</p>
+        <a href="readpage${chapterNumber}.html" class="card__btn">Read</a>
+        <button class="bottom-btn" onclick="addNewCard('bottom', ${chapterNumber + 1})">+</button>
+      </div>
+    </div>
+  `;
+  
+  // Add the new card to the card container
+  const cardContainer = document.getElementById('cardContainer');
+  cardContainer.appendChild(newCard);
+}
+
+// Initial card (Chapter 1)
+addNewCard('bottom', 1);
+
+  </script>

@@ -1,11 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reading chaper 1</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 1</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 3rem;
+    background-color: #f5f5f5;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .chapter-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  .chapter-content {
+    font-size: 1.2rem;
+    text-align: justify;
+  }
+  .navigation {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .navigation a {
+    padding: 0.5rem 1rem;
+    background-color: #e6ecff;
+    color: #0d0d0d;
+    text-decoration: none;
+    border-radius: 0.3rem;
+    transition: background-color 0.2s;
+  }
+  .navigation a:hover {
+    background-color: #e6ecff;
+  }
+</style>
 </head>
 <body>
-    
+
+<!-- ... existing code ... -->
+
+<div class="container">
+    <h1 class="chapter-title">Chapter 1: Title of the Chapter</h1>
+    <div class="chapter-content" id="chapterContent">
+      <!-- Insert the content of the chapter here -->
+      <p id="chapterText"></p>
+    </div>
+    <button onclick="editChapter()" id="editButton">Edit Chapter</button>
+    <div class="navigation">
+      <a href="index7.html">Next Chapter</a>
+      <!-- Add more navigation controls as needed -->
+    </div>
+  </div>
+  
+<!-- ... existing code ... -->
+
+<script>
+    // Function to get the stored chapter text from local storage
+    function getStoredChapterText() {
+      return localStorage.getItem('chapterText') || '';
+    }
+  
+    // Function to set the chapter text to local storage
+    function setStoredChapterText(text) {
+      localStorage.setItem('chapterText', text);
+    }
+  
+    function editChapter() {
+      const chapterTextElement = document.getElementById('chapterText');
+      const editButton = document.getElementById('editButton');
+      
+      // Create a textarea element for editing
+      const textarea = document.createElement('textarea');
+      textarea.id = 'chapterTextarea';
+      textarea.value = getStoredChapterText(); // Set the stored text
+      
+      // Replace the paragraph with the textarea
+      chapterTextElement.replaceWith(textarea);
+      
+      // Change the button text and functionality
+      editButton.textContent = 'Save Changes';
+      editButton.onclick = saveChapter;
+    }
+  
+    function saveChapter() {
+      const chapterTextarea = document.getElementById('chapterTextarea');
+      const chapterTextElement = document.getElementById('chapterContent');
+      const editButton = document.getElementById('editButton');
+      
+      // Replace the textarea with a new paragraph containing the edited text
+      const newParagraph = document.createElement('p');
+      newParagraph.id = 'chapterText';
+      newParagraph.textContent = chapterTextarea.value;
+      chapterTextarea.replaceWith(newParagraph);
+      
+      // Change the button text and functionality back to edit
+      editButton.textContent = 'Edit Chapter';
+      editButton.onclick = editChapter;
+  
+      // Save the edited text to local storage
+      setStoredChapterText(chapterTextarea.value);
+    }
+  
+    // Initialize the page with the stored chapter text
+    document.addEventListener('DOMContentLoaded', function() {
+      const chapterTextElement = document.getElementById('chapterText');
+      chapterTextElement.textContent = getStoredChapterText();
+    });
+  </script>
+  
+  <!-- ... existing code ... -->
+  
+  
+
+  
+
 </body>
 </html>
