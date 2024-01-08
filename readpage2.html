@@ -22,7 +22,7 @@
         </div>
         <button class="editButton" onclick="editChapter('2')" id="editButton">Edit Chapter</button>
         <div class="navigation">
-            <a href="index7.html">Next Chapter</a>
+            <a href="index7-2.html">Next Chapter</a>
         </div>
     </div>
 
@@ -93,31 +93,37 @@
                 saveChapter(chapterId);
             };
         }
-
         function saveChapter(chapterId) {
-            const chapterTextarea = document.getElementById('chapterTextarea');
-            const chapterTextElement = document.getElementById('chapterContent');
-            const editButton = document.getElementById('editButton');
+        const chapterTextarea = document.getElementById('chapterTextarea');
+        const editButton = document.getElementById('editButton');
+        
+        // Replace newline characters with <br> tags
+        const formattedText = chapterTextarea.value.replace(/\n/g, '<br>');
 
-            const newParagraph = document.createElement('p');
-            newParagraph.id = 'chapterText';
-            newParagraph.textContent = chapterTextarea.value;
-            chapterTextarea.replaceWith(newParagraph);
+        // Save the edited text to local storage
+        setStoredChapterText(chapterId, formattedText); // Store the formatted text
 
-            editButton.textContent = 'Edit Chapter';
-            editButton.onclick = function () {
-                editChapter(chapterId);
-            };
+        // Replace the textarea with a new paragraph containing the edited text
+        const newParagraph = document.createElement('p');
+        newParagraph.id = 'chapterText';
+        newParagraph.innerHTML = formattedText; // Use innerHTML to render <br> tags as line breaks
+        chapterTextarea.replaceWith(newParagraph);
+        
+        // Change the button text and functionality back to edit
+        editButton.textContent = 'Edit Chapter';
+        editButton.onclick = function () {
+            editChapter(chapterId);
+        };
+    }
 
-            setStoredChapterText(chapterId, chapterTextarea.value);
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const chapterTitleElement = document.getElementById('chapterTitle');
-            const chapterTextElement = document.getElementById('chapterText');
-            chapterTitleElement.textContent = getStoredChapterTitle('2');
-            chapterTextElement.textContent = getStoredChapterText('2');
-        });
+    // Initialize the page with the stored chapter title and content
+    document.addEventListener('DOMContentLoaded', function () {
+        const chapterTitleElement = document.getElementById('chapterTitle');
+        const chapterTextElement = document.getElementById('chapterText');
+        
+        chapterTitleElement.textContent = getStoredChapterTitle('2');
+        chapterTextElement.innerHTML = getStoredChapterText('2'); // Use innerHTML to render <br> tags as line breaks
+    });
     </script>
 
 </body>

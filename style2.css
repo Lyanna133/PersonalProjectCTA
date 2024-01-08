@@ -46,6 +46,7 @@ body {
   box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  margin-bottom: 30px;
 }
 .grid__item:hover {
   transform: translateY(-0.5%);
