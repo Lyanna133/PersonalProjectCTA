@@ -57,19 +57,19 @@ body {
   overflow: hidden;
   box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: 0.2s;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 .grid__item:hover {
   transform: translateY(-0.5%);
   box-shadow: 0 4rem 8rem rgba(0, 0, 0, 0.2);
 }
 
-.card__img {
+/* .card__img {
   display: block;
   width: 100%;
   height: 18rem;
   object-fit: cover;
-}
+} */
 .card__content {
   padding: 3rem 4rem;
 }
@@ -96,7 +96,7 @@ body {
   background-color: #e6ecff;
   border: none;
   border-radius: 0.4rem;
-  transition: 0.2s;
+  transition: background-color 0.2s ease-in-out;;
   cursor: pointer;
   margin-bottom: 20px;
 }
@@ -116,8 +116,8 @@ body {
   padding: 0;
   box-sizing: inherit;
   background: #fff;
-  background: rgb(109,63,185);
-  background: linear-gradient(0deg, rgba(109,63,185,1) 0%, rgba(255,255,255,1) 100%); 
+  background: #f5f5f5;
+  /* background: linear-gradient(0deg, rgb(227, 231, 243) 0%, rgba(255,255,255) 100%);  */
   
 }
 
@@ -247,36 +247,36 @@ body {
   </style>
 <html>
 <body>
-    <div class="grid">
-        <div class="grid__item">
-          <div class="cardtest">
-            <div class="card__content">
-                
-              <h1 class="card__header">Chapter 1</h1>
-              <p class="card__text">Feyre stood in front of Rhysand ready to speak her mind, she is not going to stand by...</p>
-              <button class="card__btn">Read</button>
-              <!-- <button class="hidden-btn" onclick="addNewCard('bottom')">+</button> -->
-              <button class="bottom-btn" onclick="addNewCard('bottom')">+</button>
-            </div>
-          </div>
+  <div class="grid">
+    <div class="grid__item">
+      <div class="cardtest">
+        <div class="card__content">
+          <h1 class="card__header">Chapter 1</h1>
+          <p class="card__text">Feyre stood in front of Rhysand ready to speak her mind, she is not going to stand by...</p>
+          <!-- Updated "Read" button -->
+          <a href="readpage.html" class="card__btn">Read</a>
+          <button class="bottom-btn" onclick="addNewCard('bottom')">+</button>
         </div>
-        <!-- Placeholder cards for filling space -->
-        <div class="grid__item-hidden"></div>
-        <div class="grid__item-hidden"></div>
-        <div class="grid__item-hidden"></div>
       </div>
+    </div>
+    <!-- Placeholder cards for filling space -->
+    <div class="grid__item-hidden"></div>
+    <div class="grid__item-hidden"></div>
+    <div class="grid__item-hidden"></div>
+  </div>
+  
 
     <script>
       function addNewCard(position) {
       const newCard = document.createElement('div');
       newCard.className = 'grid__item';
       newCard.innerHTML = `
-        <div class="cardtest">
+        <div class="cardtest" >
           <div class="card__content">
             <button class="btn-edit">Edit</button>
             <h1 class="card__header">New Chapter</h1>
             <p class="card__text">This is a new chapter...</p>
-            <button class="card__btn">Read</button>
+            <a href="readpage.html" class="card__btn">Read</a>
             <button class="hidden-btn" onclick="addNewCard('bottom')">+</button>
             <button class="bottom-btn" onclick="addNewCard('bottom')">+</button>
           </div>
