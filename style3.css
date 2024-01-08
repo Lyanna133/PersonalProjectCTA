@@ -45,8 +45,8 @@ body {
     background-color: #e6ecff;
   }
 .editButton {
-    padding: 0.5rem 1rem;
   background-color: #e6ecff;
+  padding: 0.5rem 1rem;
   color: #0d0d0d;
   text-decoration: none;
   border-radius: 0.3rem;
