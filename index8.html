@@ -5,44 +5,78 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>CSS Grid Cards</title>
-    <link rel="stylesheet" href="style2.css">
+    <title>Prototype Personal Project TEST AREA</title>
+    <link rel="stylesheet" href="style3.css">
     <!-- <script src="script.js"></script> -->
   </head>
-
-<body>
-<div class="grid" id="cardContainer">
-    
-    <!-- Cards will be dynamically generated here -->
-  </div>
-
-</body>
-
-  <script>
-// Function to add a new card
-function addNewCard(position, chapterNumber) {
-  // Create a new card element
-  const newCard = document.createElement('div');
-  newCard.className = 'grid__item';
   
-  // Set the content of the new card
-  newCard.innerHTML = `
-    <div class="cardtest">
-      <div class="card__content">
-        <h1 class="card__header">Chapter ${chapterNumber}</h1>
-        <p class="card__text">This is the content of Chapter ${chapterNumber}...</p>
-        <a href="readpage${chapterNumber}.html" class="card__btn">Read</a>
-        <button class="bottom-btn" onclick="addNewCard('bottom', ${chapterNumber + 1})">+</button>
+<html>
+<body>
+
+  <div class="grid">
+    <div class="grid__item">
+      <div class="cardtest">
+        <div class="card__content">
+          <h1 class="card__header">Chapter 1</h1>
+          <p class="card__text">Feyre stood in front of Rhysand ready to speak her mind, she is not going to stand by...</p>
+          <!-- Updated "Read" button -->
+          <a href="readpage.html" class="card__btn">Read</a>
+          <button class="bottom-btn" onclick="addNewCard('bottom')">+</button>
+        </div>
       </div>
     </div>
-  `;
+    <!-- Placeholder cards for filling space -->
+    <div class="grid__item-hidden"></div>
+    <div class="grid__item-hidden"></div>
+    <div class="grid__item-hidden"></div>
+  </div>
   
-  // Add the new card to the card container
-  const cardContainer = document.getElementById('cardContainer');
-  cardContainer.appendChild(newCard);
-}
 
-// Initial card (Chapter 1)
-addNewCard('bottom', 1);
+    <script>
+      function addNewCard(position) {
+      const newCard = document.createElement('div');
+      newCard.className = 'grid__item';
+      newCard.innerHTML = `
+        <div class="cardtest" >
+          <div class="card__content">
+            <h1 class="card__header">New Chapter</h1>
+            <p class="card__text">This is a new chapter...</p>
+            <a href="readpage2.html" class="card__btn">Read</a>
+            <button class="hidden-btn" onclick="addNewCard('bottom')">+</button>
+            <button class="bottom-btn" onclick="addNewCard('bottom')">+</button>
+          </div>
+        </div>
+      `;
 
-  </script>
+      const currentCard = document.querySelector('.grid__item');
+      const placeholderCards = document.querySelectorAll('.grid__item-hidden');
+
+      switch (position) {
+        case 'bottom':
+          currentCard.parentElement.appendChild(newCard);
+          // Add two placeholder cards to the right
+          for (let i = 0; i < 2; i++) {
+            const placeholderCard = document.createElement('div');
+            placeholderCard.className = 'grid__item-hidden';
+            placeholderCard.innerHTML = `
+              <div class="cardhidden">
+                <div class="card__content">
+                </div>
+              </div>
+            `;
+            currentCard.after(placeholderCard);
+          }
+          break;
+        default:
+          console.error('Invalid position:', position);
+      }
+
+      // Remove the placeholder cards
+      placeholderCards.forEach(placeholderCard => {
+        placeholderCard.remove();
+      });
+    }
+    </script>
+   
+  </body>
+  </html>

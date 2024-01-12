@@ -271,3 +271,45 @@ body {
     background-color: #e6ecff;
   }
 
+/* Add these styles for the navbar */
+.navbar {
+  background-color: #cacaca; /* Change the color as needed */
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar a {
+  color: #fff; /* Change the color as needed */
+  margin: 0 1rem;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+/* Style for active link */
+.navbar a.active {
+  border-bottom: 2px solid #fff; /* Change the color as needed */
+  padding-bottom: 0.5rem;
+}
+
+/* Add margin to body to prevent content from being hidden behind the fixed navbar */
+body {
+  margin-top: 60px; /* Adjust as needed based on your navbar height */
+}
+
+/* Add these styles for the footer */
+.footer {
+  background-color: #333; /* Change the color as needed */
+  color: #fff; /* Change the color as needed */
+  padding: 1rem;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer p {
+  margin: 0;
+}
