@@ -100,16 +100,14 @@
       const chapterTextarea = document.getElementById('chapterTextarea');
       const editButton = document.getElementById('editButton');
       
-      // Replace newline characters with <br> tags
+      // Save the raw edited text to local storage
+      setStoredChapterText(chapterTextarea.value);
+
+      // Replace the textarea with a new paragraph containing the formatted text
       const formattedText = chapterTextarea.value.replace(/\n/g, '<br>');
-
-      // Save the edited text to local storage
-      setStoredChapterText(formattedText); // Store the formatted text
-
-      // Replace the textarea with a new paragraph containing the edited text
       const newParagraph = document.createElement('p');
       newParagraph.id = 'chapterText';
-      newParagraph.innerHTML = formattedText; // Use innerHTML to render <br> tags as line breaks
+      newParagraph.innerHTML = formattedText; // Display the formatted text without <br> tags
       chapterTextarea.replaceWith(newParagraph);
       
       // Change the button text and functionality back to edit
