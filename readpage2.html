@@ -7,8 +7,6 @@
     <title>Chapter 2</title>
     <link rel="stylesheet" href="style3.css">
     <style>
-       
-     
     </style>
 </head>
 
@@ -79,52 +77,67 @@
         }
 
         function editChapter(chapterId) {
-            const chapterTextElement = document.getElementById('chapterText');
-            const editButton = document.getElementById('editButton');
+    const chapterTextElement = document.getElementById('chapterText');
+    const editButton = document.getElementById('editButton');
 
-            const textarea = document.createElement('textarea');
-            textarea.id = 'chapterTextarea';
-            textarea.value = getStoredChapterText(chapterId);
+    const textarea = document.createElement('textarea');
+    textarea.id = 'chapterTextarea';
+    textarea.value = getStoredChapterText(chapterId).replace(/<br>/g, '\n'); // Replace <br> with newline characters
 
-            chapterTextElement.replaceWith(textarea);
+    chapterTextElement.replaceWith(textarea);
 
-            editButton.textContent = 'Save Changes';
-            editButton.onclick = function () {
-                saveChapter(chapterId);
-            };
-        }
-        function saveChapter(chapterId) {
-        const chapterTextarea = document.getElementById('chapterTextarea');
-        const editButton = document.getElementById('editButton');
-        
-        // Replace newline characters with <br> tags
-        const formattedText = chapterTextarea.value.replace(/\n/g, '<br>');
+    editButton.textContent = 'Save Changes';
+    editButton.onclick = function () {
+        saveChapter(chapterId);
+    };
+}
 
-        // Save the edited text to local storage
-        setStoredChapterText(chapterId, formattedText); // Store the formatted text
+function saveChapter(chapterId) {
+    const chapterTextarea = document.getElementById('chapterTextarea');
+    const editButton = document.getElementById('editButton');
 
-        // Replace the textarea with a new paragraph containing the edited text
-        const newParagraph = document.createElement('p');
-        newParagraph.id = 'chapterText';
-        newParagraph.innerHTML = formattedText; // Use innerHTML to render <br> tags as line breaks
-        chapterTextarea.replaceWith(newParagraph);
-        
-        // Change the button text and functionality back to edit
-        editButton.textContent = 'Edit Chapter';
-        editButton.onclick = function () {
-            editChapter(chapterId);
-        };
-    }
+    // Replace newline characters with <br> tags
+    const formattedText = chapterTextarea.value.replace(/\n/g, '<br>');
 
-    // Initialize the page with the stored chapter title and content
-    document.addEventListener('DOMContentLoaded', function () {
-        const chapterTitleElement = document.getElementById('chapterTitle');
-        const chapterTextElement = document.getElementById('chapterText');
-        
-        chapterTitleElement.textContent = getStoredChapterTitle('2');
-        chapterTextElement.innerHTML = getStoredChapterText('2'); // Use innerHTML to render <br> tags as line breaks
-    });
+    // Save the edited text to local storage
+    setStoredChapterText(chapterId, formattedText);
+
+    // Replace the textarea with a new paragraph containing the edited text
+    const newParagraph = document.createElement('p');
+    newParagraph.id = 'chapterText';
+    newParagraph.innerHTML = formattedText;
+    chapterTextarea.replaceWith(newParagraph);
+
+    // Change the button text and functionality back to edit
+    editButton.textContent = 'Edit Chapter';
+    editButton.onclick = function () {
+        editChapter(chapterId);
+    };
+}
+
+
+   // Initialize the page with the stored chapter title and content
+document.addEventListener('DOMContentLoaded', function () {
+    const chapterTitleElement = document.getElementById('chapterTitle');
+    const chapterTextElement = document.getElementById('chapterText');
+
+    const storedTitle = getStoredChapterTitle('2');
+    const storedText = getStoredChapterText('2');
+
+    // Set the chapter title
+    chapterTitleElement.textContent = storedTitle;
+
+    // Set the chapter text with innerHTML, preserving line breaks
+    chapterTextElement.innerHTML = storedText.replace(/\n/g, '<br>');
+});
+
+
+
+
+
     </script>
+
+    
 
 </body>
 
