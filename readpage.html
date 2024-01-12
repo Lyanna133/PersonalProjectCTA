@@ -24,6 +24,7 @@
 </div>
 
 <script>
+  
     // Function to get the stored chapter title from local storage
     function getStoredChapterTitle() {
       return localStorage.getItem('chapterTitle') || '';
@@ -43,6 +44,7 @@
     function setStoredChapterText(text) {
       localStorage.setItem('chapterText', text);
     }
+
 
     function editTitle() {
       const chapterTitleElement = document.getElementById('chapterTitle');
@@ -115,14 +117,23 @@
       editButton.onclick = editChapter;
     }
 
-    // Initialize the page with the stored chapter title and content
-    document.addEventListener('DOMContentLoaded', function() {
-      const chapterTitleElement = document.getElementById('chapterTitle');
-      const chapterTextElement = document.getElementById('chapterText');
-      
-      chapterTitleElement.textContent = getStoredChapterTitle();
-      chapterTextElement.innerHTML = getStoredChapterText(); // Use innerHTML to render <br> tags as line breaks
-    });
+  // Initialize the page with the stored chapter title and content
+document.addEventListener('DOMContentLoaded', function() {
+  const chapterTitleElement = document.getElementById('chapterTitle');
+  const chapterTextElement = document.getElementById('chapterText');
+
+  // Retrieve stored chapter title and text
+  const storedTitle = getStoredChapterTitle();
+  const storedText = getStoredChapterText();
+
+  // Set the chapter title
+  chapterTitleElement.textContent = storedTitle;
+
+  // Set the chapter text with innerText and replace to preserve line breaks
+  chapterTextElement.innerText = storedText.replace(/<br>/g, '\n');
+});
+
+    
 </script>
 
 
