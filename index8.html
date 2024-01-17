@@ -5,13 +5,15 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Prototype Personal Project TEST AREA</title>
-    <link rel="stylesheet" href="style3.css">
+    <title>Prototype Personal Project</title>
+    <link rel="stylesheet" href="style2.css">
     <!-- <script src="script.js"></script> -->
   </head>
   
 <html>
 <body>
+ 
+
 
   <div class="grid">
     <div class="grid__item">
@@ -32,51 +34,66 @@
   </div>
   
 
-    <script>
-      function addNewCard(position) {
-      const newCard = document.createElement('div');
-      newCard.className = 'grid__item';
-      newCard.innerHTML = `
-        <div class="cardtest" >
-          <div class="card__content">
-            <h1 class="card__header">New Chapter</h1>
-            <p class="card__text">This is a new chapter...</p>
-            <a href="readpage2.html" class="card__btn">Read</a>
-            <button class="hidden-btn" onclick="addNewCard('bottom')">+</button>
-            <button class="bottom-btn" onclick="addNewCard('bottom')">+</button>
-          </div>
-        </div>
-      `;
+  <script>
+    let currentRow = 1;
+    let currentColumn = 1;
 
-      const currentCard = document.querySelector('.grid__item');
-      const placeholderCards = document.querySelectorAll('.grid__item-hidden');
+    function addNewCard(position) {
+        const newCard = document.createElement('div');
+        newCard.className = 'grid__item';
+        newCard.innerHTML = `
+            <div class="cardtest" >
+                <div class="card__content">
+                    <h1 class="card__header">New Chapter</h1>
+                    <p class="card__text">This is a new chapter...</p>
+                    <a href="readpage2.html" class="card__btn">Read</a>
+                    <button class="hidden-btn" onclick="addNewCard('right')">+</button>
+                    <button class="bottom-btn" onclick="addNewCard('bottom')">+</button>
+                </div>
+            </div>
+        `;
 
-      switch (position) {
-        case 'bottom':
-          currentCard.parentElement.appendChild(newCard);
-          // Add two placeholder cards to the right
-          for (let i = 0; i < 2; i++) {
-            const placeholderCard = document.createElement('div');
-            placeholderCard.className = 'grid__item-hidden';
-            placeholderCard.innerHTML = `
-              <div class="cardhidden">
+        const currentCard = document.querySelector('.grid__item');
+        const placeholderCards = document.querySelectorAll('.grid__item-hidden');
+
+        switch (position) {
+            case 'right':
+                currentColumn++;
+                break;
+            case 'bottom':
+                currentRow++;
+                break;
+            default:
+                console.error('Invalid position:', position);
+        }
+
+        // Update the grid position of the new card
+        newCard.style.gridRow = `${currentRow}`;
+        newCard.style.gridColumn = `${currentColumn}`;
+
+        currentCard.parentElement.appendChild(newCard);
+
+        // Add a placeholder card to the right
+        const placeholderCard = document.createElement('div');
+        placeholderCard.className = 'grid__item-hidden';
+        placeholderCard.innerHTML = `
+            <div class="cardhidden">
                 <div class="card__content">
                 </div>
-              </div>
-            `;
-            currentCard.after(placeholderCard);
-          }
-          break;
-        default:
-          console.error('Invalid position:', position);
-      }
+            </div>
+        `;
+        currentCard.after(placeholderCard);
 
-      // Remove the placeholder cards
-      placeholderCards.forEach(placeholderCard => {
-        placeholderCard.remove();
-      });
+        // Remove the placeholder cards
+        placeholderCards.forEach(placeholderCard => {
+            placeholderCard.remove();
+        });
     }
-    </script>
-   
+</script>
+
+
+  
+  
+ 
   </body>
   </html>
