@@ -12,8 +12,6 @@
   
 <html>
 <body>
- 
-
 
   <div class="grid">
     <div class="grid__item">
@@ -41,17 +39,35 @@
     function addNewCard(position) {
       const newCard = document.createElement('div');
       newCard.className = 'grid__item';
-      newCard.innerHTML = `
-        <div class="cardtest" >
-          <div class="card__content">
-            <h1 class="card__header">New Chapter</h1>
-            <p class="card__text">This is a new chapter...</p>
-            <a href="readpage2.html" class="card__btn">Read</a>
-            <button class="hidden-btn" onclick="addNewCard('right')">+</button>
-            <button class="bottom-btn" onclick="addNewCard('bottom')">+</button>
+  
+      if (position === 'bottom') {
+        newCard.innerHTML = `
+          <div class="cardtest" >
+            <div class="card__content">
+              <h1 class="card__header">New Chapter</h1>
+              <p class="card__text">This is a new chapter...</p>
+              <a href="readpage2.html" class="card__btn">Read</a>
+              <button class="hidden-btn" onclick="addNewCard('right')">+</button>
+              <button class="bottom-btn" onclick="addNewCard('bottom')">+</button>
+            </div>
           </div>
-        </div>
-      `;
+        `;
+      } else if (position === 'right') {
+        newCard.innerHTML = `
+          <div class="cardtest" >
+            <div class="card__content">
+              <h1 class="card__header">Alternate Chapter</h1>
+              <p class="card__text">This is an alternate chapter...</p>
+              <a href="readpage2.html" class="card__btn">Read</a>
+              <button class="hidden-btn" onclick="addNewCard('right')">+</button>
+              <button class="bottom-btn" onclick="addNewCard('bottom')">+</button>
+            </div>
+          </div>
+        `;
+      } else {
+        console.error('Invalid position:', position);
+        return;
+      }
   
       const currentCard = document.querySelector('.grid__item');
       const placeholderCards = document.querySelectorAll('.grid__item-hidden');
@@ -93,7 +109,7 @@
     }
   </script>
   
-  
+
  
   </body>
   </html>
