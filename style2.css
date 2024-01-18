@@ -41,6 +41,7 @@ body {
 }
 .grid__item {
   background-color: #fff;
+  z-index: 2;
   border-radius: 0.4rem;
   overflow: hidden;
   box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
@@ -51,6 +52,17 @@ body {
 .grid__item:hover {
   transform: translateY(-0.5%);
   box-shadow: 0 4rem 8rem rgba(0, 0, 0, 0.2);
+}
+
+
+#lineContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1; /* Set a lower z-index for the lines to be behind the cards */
 }
 
 .card__content {
@@ -258,3 +270,13 @@ body {
 .navigation a:hover {
   background-color: #e6ecff;
 }
+
+.linestyle{
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%;
+  height: 100%; 
+  pointer-events: none;
+}
+
