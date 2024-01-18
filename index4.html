@@ -112,15 +112,19 @@
   const cards = document.querySelectorAll('.cardtest');
   const gridRect = document.getElementById('gridContainer').getBoundingClientRect();
 
+  // Adjust the offset to 2 cm to the right
+  const offsetX = 220; // 1 cm = 10 pixels
+  
+
   for (let i = 1; i < cards.length; i++) {
     const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     const fromRect = cards[i - 1].getBoundingClientRect();
     const toRect = cards[i].getBoundingClientRect();
 
-    const startX = fromRect.left + fromRect.width / 1 - gridRect.left;
+    const startX = fromRect.left + fromRect.width / 1 - gridRect.left + offsetX;
     const startY = fromRect.top + fromRect.height / 3 - gridRect.top;
 
-    const endX = toRect.left + toRect.width / 1 - gridRect.left;
+    const endX = toRect.left + toRect.width / 1 - gridRect.left + offsetX;
     const endY = toRect.top + toRect.height / 3 - gridRect.top;
 
     line.setAttribute('x1', startX);
@@ -136,6 +140,7 @@
   // Adjust the height of the SVG container to match the total height of the grid
   lineContainer.style.height = gridRect.height + 'px';
 }
+
 
 
 
