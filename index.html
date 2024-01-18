@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Prototype Personal Project</title>
+  <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+<div class="grid" id="gridContainer">
+  <div class="grid__item">
+    <div class="cardtest" id="card1">
+      <div class="card__content">
+        <h1 class="card__header">Chapter 1</h1>
+        <p class="card__text">Feyre stood in front of Rhysand ready to speak her mind, she is not going to stand by...</p>
+        <!-- Updated "Read" button -->
+        <a href="readpage.html" class="card__btn">Read</a>
+        <button class="bottom-btn" onclick="addNewCard('bottom')">+</button>
+      </div>
+    </div>
+  </div>
+  <!-- Other grid items go here -->
+</div>
+
+<svg id="lineContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></svg>
+
+<script>
+  let currentRow = 1;
+  let currentColumn = 1;
+
+  function addNewCard(position) {
+    const newCard = document.createElement('div');
+    newCard.className = 'grid__item';
+
+    if (position === 'bottom') {
+      newCard.innerHTML = `
+        <div class="cardtest" id="card${currentRow + 1}">
+          <div class="card__content">
+            <h1 class="card__header">New Chapter</h1>
+            <p class="card__text">This is a new chapter...</p>
+            <a href="readpage2.html" class="card__btn">Read</a>
+            <button class="hidden-btn" onclick="addNewCard('right')">+</button>
+            <button class="bottom-btn" onclick="addNewCard('bottom')">+</button>
+          </div>
+        </div>
+      `;
+    } else if (position === 'right') {
+      newCard.innerHTML = `
+        <div class="cardtest" id="card${currentRow + 1}">
+          <div class="card__content">
+            <h1 class="card__header">Alternate Chapter</h1>
+            <p class="card__text">This is an alternate chapter...</p>
+            <a href="readpage2.html" class="card__btn">Read</a>
+            <button class="hidden-btn" onclick="addNewCard('right')">+</button>
+            <button class="bottom-btn" onclick="addNewCard('bottom')">+</button>
+          </div>
+        </div>
+      `;
+    } else {
+      console.error('Invalid position:', position);
+      return;
+    }
+
+    const currentCard = document.querySelector('.grid__item');
+    const placeholderCards = document.querySelectorAll('.grid__item-hidden');
+
+    switch (position) {
+      case 'right':
+        currentColumn++;
+        break;
+      case 'bottom':
+        currentRow++;
+        break;
+      default:
+        console.error('Invalid position:', position);
+    }
+
+    // Update the grid position of the new card
+    newCard.style.gridRow = `${currentRow}`;
+    newCard.style.gridColumn = `${currentColumn}`;
+
+    currentCard.parentElement.appendChild(newCard);
+
+    // Add two placeholder cards to the right
+    for (let i = 0; i < 2; i++) {
+      const placeholderCard = document.createElement('div');
+      placeholderCard.className = 'grid__item-hidden';
+      placeholderCard.innerHTML = `
+        <div class="cardhidden">
+          <div class="card__content">
+          </div>
+        </div>
+      `;
+      currentCard.after(placeholderCard);
+    }
+
+    // Remove the placeholder cards
+    placeholderCards.forEach(placeholderCard => {
+      placeholderCard.remove();
+    });
+
+    // Draw lines after adding a new card
+    drawLines();
+  }
+
+  function drawLines() {
+  const lineContainer = document.getElementById('lineContainer');
+  lineContainer.innerHTML = '';
+
+  const cards = document.querySelectorAll('.cardtest');
+  const gridRect = document.getElementById('gridContainer').getBoundingClientRect();
+
+  // Adjust the offset to 2 cm to the right
+  const offsetX = 220; // 1 cm = 10 pixels
+  
+
+  for (let i = 1; i < cards.length; i++) {
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    const fromRect = cards[i - 1].getBoundingClientRect();
+    const toRect = cards[i].getBoundingClientRect();
+
+    const startX = fromRect.left + fromRect.width / 1 - gridRect.left + offsetX;
+    const startY = fromRect.top + fromRect.height / 3 - gridRect.top;
+
+    const endX = toRect.left + toRect.width / 1 - gridRect.left + offsetX;
+    const endY = toRect.top + toRect.height / 3 - gridRect.top;
+
+    line.setAttribute('x1', startX);
+    line.setAttribute('y1', startY);
+    line.setAttribute('x2', endX);
+    line.setAttribute('y2', endY);
+    line.setAttribute('stroke', 'black');
+    line.setAttribute('stroke-width', '2');
+
+    lineContainer.appendChild(line);
+  }
+
+  // Adjust the height of the SVG container to match the total height of the grid
+  lineContainer.style.height = gridRect.height + 'px';
+}
+
+</script>
+
+</body>
+</html>
