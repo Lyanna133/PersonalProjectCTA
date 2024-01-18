@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3</title>
+    <link rel="stylesheet" href="style3.css">
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="chapter-title" id="chapterTitle">Chapter 3</h1>
+        <!-- <button class="editButton" onclick="editTitle('3')" id="editTitleButton">Edit Title</button> -->
+        <div class="chapter-content" id="chapterContent">
+            <p id="chapterText"></p>
+        </div>
+        <button class="editButton" onclick="editChapter('3')" id="editButton">Edit Chapter</button>
+        <div class="navigation">
+            <a href="index1-3.html">Next Chapter</a>
+        </div>
+    </div>
+
+    <script>
+        // Functions to handle local storage with a chapter identifier
+        function getStoredChapterTitle(chapterId) {
+            return localStorage.getItem(`chapterTitle${chapterId}`) || '';
+        }
+
+        function setStoredChapterTitle(chapterId, title) {
+            localStorage.setItem(`chapterTitle${chapterId}`, title);
+        }
+
+        function getStoredChapterText(chapterId) {
+            return localStorage.getItem(`chapterText${chapterId}`) || '';
+        }
+
+        function setStoredChapterText(chapterId, text) {
+            localStorage.setItem(`chapterText${chapterId}`, text);
+        }
+
+        function editTitle(chapterId) {
+            const chapterTitleElement = document.getElementById('chapterTitle');
+            const editTitleButton = document.getElementById('editTitleButton');
+
+            const input = document.createElement('input');
+            input.id = 'chapterTitleInput';
+            input.value = getStoredChapterTitle(chapterId);
+
+            chapterTitleElement.replaceWith(input);
+
+            editTitleButton.textContent = 'Save Title';
+            editTitleButton.onclick = function () {
+                saveTitle(chapterId);
+            };
+        }
+
+        function saveTitle(chapterId) {
+            const chapterTitleInput = document.getElementById('chapterTitleInput');
+            const chapterTitleElement = document.getElementById('chapterTitle');
+            const editTitleButton = document.getElementById('editTitleButton');
+
+            const newTitleElement = document.createElement('h1');
+            newTitleElement.id = 'chapterTitle';
+            newTitleElement.textContent = chapterTitleInput.value;
+            chapterTitleInput.replaceWith(newTitleElement);
+
+            editTitleButton.textContent = 'Edit Title';
+            editTitleButton.onclick = function () {
+                editTitle(chapterId);
+            };
+
+            setStoredChapterTitle(chapterId, chapterTitleInput.value);
+        }
+
+        function editChapter(chapterId) {
+    const chapterTextElement = document.getElementById('chapterText');
+    const editButton = document.getElementById('editButton');
+
+    const textarea = document.createElement('textarea');
+    textarea.id = 'chapterTextarea';
+    textarea.value = getStoredChapterText(chapterId).replace(/<br>/g, '\n'); // Replace <br> with newline characters
+
+    chapterTextElement.replaceWith(textarea);
+
+    editButton.textContent = 'Save Changes';
+    editButton.onclick = function () {
+        saveChapter(chapterId);
+    };
+}
+
+function saveChapter(chapterId) {
+    const chapterTextarea = document.getElementById('chapterTextarea');
+    const editButton = document.getElementById('editButton');
+
+    // Replace newline characters with <br> tags
+    const formattedText = chapterTextarea.value.replace(/\n/g, '<br>');
+
+    // Save the edited text to local storage
+    setStoredChapterText(chapterId, formattedText);
+
+    // Replace the textarea with a new paragraph containing the edited text
+    const newParagraph = document.createElement('p');
+    newParagraph.id = 'chapterText';
+    newParagraph.innerHTML = formattedText;
+    chapterTextarea.replaceWith(newParagraph);
+
+    // Change the button text and functionality back to edit
+    editButton.textContent = 'Edit Chapter';
+    editButton.onclick = function () {
+        editChapter(chapterId);
+    };
+}
+
+
+   // Initialize the page with the stored chapter title and content
+document.addEventListener('DOMContentLoaded', function () {
+    const chapterTitleElement = document.getElementById('chapterTitle');
+    const chapterTextElement = document.getElementById('chapterText');
+
+    const storedTitle = getStoredChapterTitle('3');
+    const storedText = getStoredChapterText('3');
+
+    // Set the chapter title
+    chapterTitleElement.textContent = storedTitle;
+
+    // Set the chapter text with innerHTML, preserving line breaks
+    chapterTextElement.innerHTML = storedText.replace(/\n/g, '<br>');
+});
+
+
+
+
+
+    </script>
+
+    
+
+</body>
+
+</html>
